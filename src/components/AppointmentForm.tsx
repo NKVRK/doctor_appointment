@@ -103,7 +103,7 @@ const AppointmentForm: React.FC<AppointmentFormProps> = ({ doctorId, onSubmit })
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-[#1e2a47] p-4 md:p-6">
       <Link
-        to={`/doctor/${doctorId}`}
+        to={`/doctor/:${doctorId}`}
         className="flex items-center text-gray-500 dark:text-gray-500 mb-4 hover:text-black dark:hover:text-white w-max rounded-lg p-2 transition-colors duration-200"
       >
         <ArrowLeft className="mr-2" />

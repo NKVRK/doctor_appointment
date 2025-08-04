@@ -1,6 +1,6 @@
-const { override, disableEsLint, addWebpackModuleRule } = require('customize-cra');
+import { override, disableEsLint, addWebpackModuleRule } from 'customize-cra';
 
-     module.exports = override(
+     export default override(
        // Disable source map loading for react-datepicker
        (config) => {
          config.module.rules.forEach((rule) => {

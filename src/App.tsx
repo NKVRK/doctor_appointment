@@ -3,10 +3,10 @@ import { Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import LandingPage from './pages/LandingPage';
 import DoctorProfilePage from './pages/DoctorProfilePage';
-import BookingAppointmentPage from './pages/BookAppointment';
 import BookingStatus from './pages/BookingStatus';
 import { Doctor } from './components/DoctorCard';
 import { DoctorProvider } from './context/DoctorContext';
+import BookingFormPage from './pages/BookAppointment';
 
 interface AppProps {
   isDarkMode: boolean;
@@ -36,7 +36,7 @@ const App: React.FC<AppProps> = ({ isDarkMode, setIsDarkMode }) => {
           />  
           <Route
             path="/book-appointment/:id"
-            element={<BookingAppointmentPage/>}
+            element={<BookingFormPage/>}
           /> 
           <Route
             path="/booking-status"
