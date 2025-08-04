@@ -1,26 +1,51 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Header from './components/Header';
+import LandingPage from './pages/LandingPage';
+import DoctorProfilePage from './pages/DoctorProfilePage';
+import BookingAppointmentPage from './pages/BookAppointment';
+import BookingStatus from './pages/BookingStatus';
+import { Doctor } from './components/DoctorCard';
+import { DoctorProvider } from './context/DoctorContext';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+interface AppProps {
+  isDarkMode: boolean;
+  setIsDarkMode: (value: boolean) => void;
 }
+
+const App: React.FC<AppProps> = ({ isDarkMode, setIsDarkMode }) => {
+
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedSpecialty, setSelectedSpecialty] = useState('All Specializations');
+
+  return (
+    <DoctorProvider>
+      <div className="min-h-screen min-w-screen p-0 m-0" data-theme={isDarkMode ? 'dark' : 'light'}>
+        <Header isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
+        <Routes>
+          <Route path="/" element={
+            <LandingPage
+                searchTerm={searchTerm}
+                setSearchTerm={setSearchTerm}
+                selectedSpecialty={selectedSpecialty}
+                setSelectedSpecialty={setSelectedSpecialty}
+              />}/>
+          <Route
+            path="/doctor/:id"
+            element={<DoctorProfilePage/>}
+          />  
+          <Route
+            path="/book-appointment/:id"
+            element={<BookingAppointmentPage/>}
+          /> 
+          <Route
+            path="/booking-status"
+            element={<BookingStatus/>}
+          />    
+        </Routes>
+      </div>
+    </DoctorProvider>
+  );
+};
 
 export default App;

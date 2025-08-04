@@ -2,8 +2,9 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+test('renders MediBook header', () => {
+  const mockSetIsDarkMode = jest.fn();
+  render(<App isDarkMode={true} setIsDarkMode={mockSetIsDarkMode} />);
+  const headerElement = screen.getByText(/MediBook/i);
+  expect(headerElement).toBeInTheDocument();
 });
