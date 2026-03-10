@@ -1,6 +1,5 @@
 import React from 'react';
 import { useParams} from 'react-router-dom';
-import { Doctor } from '../components/DoctorCard';
 import { ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom'; 
 import DoctorProfileCard from '../components/DoctorProfileCard';

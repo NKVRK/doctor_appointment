@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, Calendar } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
@@ -23,7 +22,6 @@ interface AppointmentFormProps {
 }
 
 const AppointmentForm: React.FC<AppointmentFormProps> = ({ doctorId, onSubmit }) => {
-  const navigate = useNavigate();
   const [doctor, setDoctor] = useState<Doctor | null>(null);
   const [formData, setFormData] = useState({
     patientName: '',
@@ -218,13 +216,13 @@ const AppointmentForm: React.FC<AppointmentFormProps> = ({ doctorId, onSubmit })
 
           <div className="pt-4 mt-8 border-t border-gray-100 dark:border-gray-700/50">
             <motion.button
-              whileHover={{ scale: doctor.available ? 1.02 : 1 }}
-              whileTap={{ scale: doctor.available ? 0.98 : 1 }}
+              whileHover={{ scale: (doctor.available && !isSubmitting) ? 1.02 : 1 }}
+              whileTap={{ scale: (doctor.available && !isSubmitting) ? 0.98 : 1 }}
               type="submit"
               className="w-full py-4 px-6 bg-sky-500 hover:bg-sky-600 text-white font-bold rounded-xl transition-all duration-300 shadow-md hover:shadow-lg disabled:bg-gray-400 disabled:dark:bg-gray-700 disabled:hover:shadow-none disabled:cursor-not-allowed text-lg"
-              disabled={!doctor.available}
+              disabled={!doctor.available || isSubmitting}
             >
-              Confirm Appointment
+              {isSubmitting ? 'Scheduling...' : 'Confirm Appointment'}
             </motion.button>
             <p className="text-center text-gray-500 dark:text-gray-400 text-sm mt-4">
               By confirming, you agree to our terms and cancellation policy.
