@@ -5,6 +5,7 @@ import { ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom'; 
 import DoctorProfileCard from '../components/DoctorProfileCard';
 import { useDoctorContext } from '../context/DoctorContext';
+import { motion } from 'framer-motion';
 
 
 const DoctorProfilePage: React.FC = () => {
@@ -18,7 +19,13 @@ const DoctorProfilePage: React.FC = () => {
   }
 
   return (
-    <div className="min-h-[95vh] bg-gray-100 dark:bg-[#1e2a47] p-6 min-w-screen">
+    <motion.div 
+      initial={{ opacity: 0, scale: 0.98 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.95 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
+      className="w-full max-w-7xl mx-auto px-4 py-8 relative z-10"
+    >
        {/* Back to Doctors Button */}
        <Link
             to="/"
@@ -28,7 +35,7 @@ const DoctorProfilePage: React.FC = () => {
             Back to Doctors
       </Link>
       <DoctorProfileCard doctor={doctor}/>
-    </div>
+    </motion.div>
   );
 };
 

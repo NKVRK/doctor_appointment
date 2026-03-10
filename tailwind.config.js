@@ -6,6 +6,13 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+      },
+      colors: {
+        obsidian: '#0f172a',
+        'obsidian-light': '#1e293b',
+      },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',
       },
